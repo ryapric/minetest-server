@@ -1,0 +1,16 @@
+services:
+  minetest:
+    container_name: 'minetest'
+    image: 'registry.gitlab.com/minetest/minetest/server:latest'
+    # wrapped like this so it's a little easier to see similar flag values lined up
+    entrypoint: |-
+      /usr/local/bin/minetestserver
+      --gameid    mineclone2
+      --worldname mineclone2
+    volumes:
+    - './data:/var/lib/minetest'
+    - './config:/etc/minetest'
+    ports:
+    - '30000:30000/tcp'
+    - '30000:30000/udp'
+    restart: 'always'
